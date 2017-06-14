@@ -114,6 +114,30 @@ namespace RecipeBox.Objects
       }
     }
 
+    public void AddRecipe(Recipe newRecipe)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INERT INTO join_recipes_tags(recipe_id, tag_id) VALUES (@RecipeId, @TagId);", conn);
+
+      SqlParameter RecipeIdParam = new SqlParameter();
+      RecipeIdParam.ParameterName = "@RecipeId";
+      RecipeIdParam.Value = newTag.GetId();
+      cmd.Parameters.Add(RecipeIdParam);
+
+      SqlParameter TagIdParam = new SqlParameter();
+      TagIdParam.ParameterName = "@TagId";
+      TagIdParam.Value = this.GetId();
+      cmd.Parameters.Add(TagIdParam);
+
+      cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
