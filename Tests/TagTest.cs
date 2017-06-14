@@ -28,6 +28,15 @@ namespace RecipeBox
       Assert.Equal(expectedList, actualList);
     }
 
+    [Fact]
+    public void Equal_TagsAreTheSame_True()
+    {
+      Tag firstTag = new Tag("Soup");
+      Tag secondTag = new Tag("Soup");
+
+      Assert.Equal(firstTag, secondTag);
+    }
+
     public void Dispose()
     {
       Tag.DeleteAll();
