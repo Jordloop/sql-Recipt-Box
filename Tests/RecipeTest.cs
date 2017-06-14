@@ -40,13 +40,44 @@ namespace RecipeBox
     public void Save_RecipeIsSavedToDatabase_True()
     {
       //Arrange
-      Recipe newRecipe = new Recipe("Soup", "Head up Soup");
+      Recipe newRecipe = new Recipe("Soup", "Heat up Soup");
       //Act
       newRecipe.Save();
       Recipe savedRecipe = Recipe.GetAll()[0];
       //Assert
       Assert.Equal(newRecipe, savedRecipe);
     }
+
+    [Fact]
+    public void AddTag_AddTagsToOneRecipe_True()
+    {
+      //Arrange
+      Recipe testRecipe = new Recipe("Soup", "Heat up Soup");
+      testRecipe.Save();
+
+      Tag firstTag = new Tag("Hearty");
+      firstTag.Save();
+      Tag secondTag = new Tag("Soupy");
+      secondTag.Save();
+      //Act
+      testRecipe.AddTag(firstTag);
+      testRecipe.AddTag(secondTag);
+
+      List<Tag> result = testRecipe.GetTags();
+      List<Tag> testList = new List<Tag>{firstTag, secondTag};
+      //Assert
+      Assert.Equal(testList, result);
+    }
+    //
+    // [Fact]
+    // public void GetTag_()
+    // {
+    //   //Arrange
+    //   Recipe testRecipe
+    //   //Act
+    //
+    //   //Assert
+    // }
 
     public void Dispose()
     {
