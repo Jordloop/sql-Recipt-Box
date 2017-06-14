@@ -20,17 +20,17 @@ namespace RecipeBox.Objects
         return _id;
     }
 
-    public void SetId(newId)
+    public void SetId(int newId)
     {
       _id = newId;
     }
 
-    public int GetName()
+    public string GetName()
     {
         return _name;
     }
 
-    public void SetName(newName)
+    public void SetName(string newName)
     {
       _name = newName;
     }

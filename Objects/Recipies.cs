@@ -10,7 +10,7 @@ namespace RecipeBox.Objects
     private string _name;
     private string _instructions;
 
-    public Recipe(string Name, string Instructions, int id = 0)
+    public Recipe(string Name, string Instructions, int Id = 0)
     {
       _name = Name;
       _instructions = Instructions;
@@ -34,7 +34,7 @@ namespace RecipeBox.Objects
 
     public void SetName(string newName)
     {
-      _name = newNamel
+      _name = newName;
     }
 
     public string GetInstructions()
@@ -42,9 +42,9 @@ namespace RecipeBox.Objects
       return _instructions;
     }
 
-    public void SetInstructions(newInstructions)
+    public void SetInstructions(string newInstructions)
     {
-      _instructions = Instructions;
+      _instructions = newInstructions;
     }
 
 
