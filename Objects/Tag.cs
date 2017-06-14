@@ -123,7 +123,7 @@ namespace RecipeBox.Objects
 
       SqlParameter RecipeIdParam = new SqlParameter();
       RecipeIdParam.ParameterName = "@RecipeId";
-      RecipeIdParam.Value = newTag.GetId();
+      RecipeIdParam.Value = newRecipe.GetId();
       cmd.Parameters.Add(RecipeIdParam);
 
       SqlParameter TagIdParam = new SqlParameter();

@@ -68,16 +68,26 @@ namespace RecipeBox
       //Assert
       Assert.Equal(testList, result);
     }
-    //
-    // [Fact]
-    // public void GetTag_()
-    // {
-    //   //Arrange
-    //   Recipe testRecipe
-    //   //Act
-    //
-    //   //Assert
-    // }
+
+    [Fact]
+    public void GetTags_ReturnsAllTagsFromOneRecipe_True()
+    {
+      //Arrange
+      Recipe testRecipe = new Recipe("Soup", "Heat that soup!");
+      testRecipe.Save();
+
+      Tag firstTag = new Tag("Hearty");
+      firstTag.Save();
+      Tag secondTag = new Tag("Soupy");
+      secondTag.Save();
+      //Act
+      testRecipe.AddTag(firstTag);
+      testRecipe.AddTag(secondTag);
+      List<Tag> testTags = testRecipe.GetTags();
+      List<Tag> contolTags = new List<Tag>{firstTag, secondTag};
+      //Assert
+      Assert.Equal(contolTags, testTags);
+    }
 
     public void Dispose()
     {
