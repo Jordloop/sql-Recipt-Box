@@ -49,6 +49,24 @@ namespace RecipeBox.Objects
       _instructions = newInstructions;
     }
 
+//EQUALS OVERRIDE
+    public override bool Equals(System.Object otherRecipe)
+    {
+      if(!(otherRecipe is Recipe))
+      {
+        return false;
+      }
+      else
+      {
+        Recipe newRecipe = (Recipe) otherRecipe;
+        bool nameEquality = this.GetName() == newRecipe.GetName();
+        bool instructionsEquality = this.GetInstructions() == newRecipe.GetInstructions();
+        bool idEquality = this.GetId() == newRecipe.GetId();
+
+        return (nameEquality && instructionsEquality && idEquality);
+      }
+    }
+
 //CLASS METHODS
 
     public static List<Recipe> GetAll()

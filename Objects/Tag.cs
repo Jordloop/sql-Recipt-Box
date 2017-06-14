@@ -37,6 +37,23 @@ namespace RecipeBox.Objects
       _name = newName;
     }
 
+//EQUALS OVERRIDE
+    public override bool Equals(System.Object otherTag)
+    {
+      if(!(otherTag is Tag))
+      {
+        return false;
+      }
+      else
+      {
+        Tag newTag = (Tag) otherTag;
+        bool nameEquality = this.GetName() == newTag.GetName();
+        bool idEquality = this.GetId() == newTag.GetId();
+
+        return (nameEquality && idEquality);
+      }
+    }
+
 //CLASS METHODS
 
     public static List<Tag> GetAll()
