@@ -9,29 +9,28 @@ namespace RecipeBox
 {
   [Collection("RecipeBox")]
 
-  public class RecipeTest : IDisposable
+  public class TagTests : IDisposable
   {
-    public RecipeTest()
+    public TagTests()
     {
     DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=recipebox_test;Integrated Security=SSPI;";
     }
 
+
     [Fact]
-    public void Recipe_DatebaseIsEmpty_True()
+    public void Tag_DatebaseIsEmpty_True()
     {
       //Arrange
-      List<Recipe> expectedList = new List<Recipe>{};
-      List<Recipe> actualList = Recipe.GetAll();
+      List<Tag> expectedList = new List<Tag>{};
+      List<Tag> actualList = Tag.GetAll();
 
       //Assert
       Assert.Equal(expectedList, actualList);
     }
 
-    
-
     public void Dispose()
     {
-      Recipe.DeleteAll();
+      Tag.DeleteAll();
     }
 
 
