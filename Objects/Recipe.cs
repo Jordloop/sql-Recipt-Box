@@ -191,7 +191,6 @@ namespace RecipeBox.Objects
       return tags;
     }
 
-
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
@@ -205,7 +204,6 @@ namespace RecipeBox.Objects
         conn.Close();
       }
     }
-
 
   }
 }
