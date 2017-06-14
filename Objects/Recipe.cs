@@ -135,7 +135,7 @@ namespace RecipeBox.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INERT INTO join_recipes_tags(recipe_id, tag_id) VALUES (@RecipeId, @TagId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO join_recipes_tags(id_recipes, id_tags) VALUES (@RecipeId, @TagId)", conn);
 
       SqlParameter RecipeIdParam = new SqlParameter();
       RecipeIdParam.ParameterName = "@RecipeId";
@@ -152,6 +152,43 @@ namespace RecipeBox.Objects
       {
         conn.Close();
       }
+    }
+
+    public List<Tag> GetTags()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT tags.* FROM recipes JOIN join_recipes_tags ON (recipes.id = join_recipes_tags.id_recipes) JOIN tags ON (tags.id = join_recipes_tags.id_tags) WHERE recipes.id = @RecipeId", conn);
+
+      SqlParameter RecipeIdParam = new SqlParameter();
+      RecipeIdParam.ParameterName = "@RecipeId";
+      RecipeIdParam.Value = this.GetId().ToString();
+
+      cmd.Parameters.Add(RecipeIdParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Tag> tags = new List<Tag>{};
+
+      while(rdr.Read())
+      {
+        int tagId = rdr.GetInt32(0);
+        string tagName = rdr.GetString(1);
+
+        Tag newTag = new Tag(tagName, tagId);
+        tags.Add(newTag);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return tags;
     }
 
 

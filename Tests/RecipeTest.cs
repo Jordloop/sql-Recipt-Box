@@ -92,6 +92,7 @@ namespace RecipeBox
     public void Dispose()
     {
       Recipe.DeleteAll();
+      Tag.DeleteAll();
     }
 
 
