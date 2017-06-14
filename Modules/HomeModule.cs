@@ -1,6 +1,7 @@
 using Nancy;
 using System.Collections.Generic;
 using System;
+using RecipeBox.Objects;
 
 namespace RecipeBox
 {
@@ -8,7 +9,10 @@ namespace RecipeBox
   {
     public HomeModule()
     {
-      Get["/"] = _ => "Hey you";
+      Get["/"] = _ => {
+        List<Recipe> allRecipes = Recipe.GetAll();
+        return View["index.cshtml", allRecipes];
+      };
     }
   }
 }
