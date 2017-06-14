@@ -36,6 +36,18 @@ namespace RecipeBox
       Assert.Equal(firstRecipe, secondRecipe);
     }
 
+    [Fact]
+    public void Save_RecipeIsSavedToDatabase_True()
+    {
+      //Arrange
+      Recipe newRecipe = new Recipe("Soup", "Head up Soup");
+      //Act
+      newRecipe.Save();
+      Recipe savedRecipe = Recipe.GetAll()[0];
+      //Assert
+      Assert.Equal(newRecipe, savedRecipe);
+    }
+
     public void Dispose()
     {
       Recipe.DeleteAll();

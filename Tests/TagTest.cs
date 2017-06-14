@@ -37,6 +37,18 @@ namespace RecipeBox
       Assert.Equal(firstTag, secondTag);
     }
 
+    [Fact]
+    public void Save_TagIsSavedToDatabase_True()
+    {
+      //Arrange
+      Tag newTag = new Tag("Soup");
+      //Act
+      newTag.Save();
+      Tag savedTag = Tag.GetAll()[0];
+      //Assert
+      Assert.Equal(newTag, savedTag);
+    }
+
     public void Dispose()
     {
       Tag.DeleteAll();
